@@ -135,9 +135,8 @@ struct CmdUpgradeNix : MixDryRun, StoreCommand
                 fmt("installing '%s' into profile %s...", store->printStorePath(storePath), PathFmt(profileDir)));
 
             // FIXME: don't call an external process.
-            runProgram(
-                getNixBin("nix-env"),
-                false,
+            runNixBin(
+                "nix-env",
                 {
                     OS_STR("--profile"),
                     profileDir.native(),
